@@ -40,8 +40,8 @@ const ProductPage = () => {
   /* Show loading state */
   if (loading) {
     return (
-      <div className="flex justify-center items-center min-h-screen">
-        <div className="text-lg">Loading product...</div>
+      <div className="flex justify-center items-center min-h-screen bg-blue-900">
+        <div className="text-5xl text-white font-serif">Loading product...</div>
       </div>
     );
   }
