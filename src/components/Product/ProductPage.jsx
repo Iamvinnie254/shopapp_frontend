@@ -77,23 +77,30 @@ const ProductPage = () => {
   }
 
   return (
-    <div>
+    <div className="pt-7">
       <section className="py-3">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-6">
-            <div className="product-image">
+            <div
+              className="product-image"
+              data-aos="slide-right"
+              data-aos-delay="400"
+            >
               <img
                 src={`${baseURL}${product.image}`}
                 alt={product.name || "Product image"}
                 className="w-full h-64 md:h-96 object-cover rounded-lg"
-                
               />
             </div>
 
-            <div className="product-details">
-              <div>
+            <div
+              className="product-details"
+              data-aos="slide-left"
+              data-aos-delay="400"
+            >
+              <div className="pb-7">
                 <h1>SVW : 6/4/2025</h1>
-             </div>
+              </div>
               <h1 className="text-2xl md:text-3xl font-bold mb-4">
                 {product.name || "Product Name"}
               </h1>
@@ -113,7 +120,7 @@ const ProductPage = () => {
                   type="button"
                   className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg cursor-pointer transition-colors duration-200 flex items-center gap-2"
                   onClick={() => {
-                     /* Add your cart logic here */
+                    /* Add your cart logic here */
                     console.log("Adding to cart:", product);
                   }}
                 >

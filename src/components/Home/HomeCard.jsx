@@ -4,7 +4,7 @@ import { baseURL } from "../../api";
 
 const HomeCard = ({product}) => {
   return (
-    <Link to={`/products/${product.slug}`} onClick={window.scrollTo(0,0)}>
+    <Link to={`/products/${product.slug}`} onClick={window.scrollTo(0,0)} data-aos='fade-out' data-aos-delay='400'>
       <div className="bg-white shadow-md rounded-lg overflow-hidden">
         <img
           src={`${baseURL}${product.image}`}
