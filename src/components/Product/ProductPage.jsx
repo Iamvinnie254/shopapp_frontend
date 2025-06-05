@@ -6,10 +6,32 @@ import { baseURL } from "../../api";
 
 const ProductPage = () => {
   const { slug } = useParams();
-  const [product, setProduct] = useState(null);
+  const [product, setProduct] = useState({});
   const [similarProducts, setSimilarProducts] = useState([]); 
   const [loading, setLoading] = useState(true); 
   const [error, setError] = useState(null); 
+  /* ADDING TO CART ONLY ONCE */
+  const [inCart, setInCart] = useState(false);
+
+  /* ADDING ITEMS TO CART */
+  function add_item() {
+    const cart_code = localStorage.getItem("cart_code");
+    console.log("cart_code:", cart_code, "product.id:", product.id);
+    if (!cart_code || !product.id) {
+      alert("Cart code or product ID missing!");
+      return;
+    }
+    const newItem = { cart_code: cart_code, product_id: product.id };
+    api
+      .post("add_item/", newItem)
+      .then((res) => {
+        console.log(res.data);
+        setInCart(true)
+      })
+      .catch((err) => {
+        console.log(err.response?.data || err.message);
+      });
+  }
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -119,13 +141,13 @@ const ProductPage = () => {
                 <button
                   type="button"
                   className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg cursor-pointer transition-colors duration-200 flex items-center gap-2"
-                  onClick={() => {
-                    /* Add your cart logic here */
-                    console.log("Adding to cart:", product);
-                  }}
+
+                  /* adding item to cart logic / functionality */
+                  onClick={add_item}
+                  disabled={inCart}
                 >
                   <i className="fas fa-shopping-cart"></i>
-                  Add to cart
+                  {inCart? "Product added to cart":"Add to cart"}
                 </button>
               </div>
             </div>

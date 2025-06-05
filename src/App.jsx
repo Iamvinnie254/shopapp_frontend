@@ -14,7 +14,7 @@ function App() {
       duration: 1000,
       easing: "ease-in-out",
       once: false,
-      offset: 100
+      /* offset: 100 */
     })
   },[])
 
